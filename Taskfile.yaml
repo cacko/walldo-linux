@@ -37,7 +37,7 @@ tasks:
     desc: build
     cmds:
       - rm -rf dist/*
-      - mamba run -n {{.PROJECT}} python setup.py bdist_wheel
+      - mamba run -n {{.PROJECT}} pip wheel --no-deps -w dist .
 
   install:
     desc: install

@@ -5,13 +5,13 @@ import semver
 from setuptools import find_packages, setup
 from setuptools.dist import Distribution as _Distribution
 
-__name__ = "wmtf"
+__name__ = "walldo"
 vp = Path(__file__).parent / "src" / __name__ / "version.py"
 __version__ = semver.VersionInfo.parse(vp.read_text().strip().split('"')[1])
 
 
 def version():
-    if len(sys.argv) > 1 and sys.argv[1] == "bdist_wheel":
+    if len(sys.argv) > 1 and sys.argv[1] >= "bdist_wheel":
         nv = f"{__version__.bump_patch()}"
         vp.write_text(f'__version__ = "{nv}"\n')
         return nv
@@ -33,53 +33,36 @@ setup(
     description="whatever",
     install_requires=[
         "appdirs>=1.4.4",
-        "beautifulsoup4>=4.11.1",
-        "corethread>=0.1.3",
-        "corestring>=0.1.4",
-        "pillow>=9.2.0",
-        "prompt-toolkit>=3.0.31",
-        "pyfiglet>=0.8.post1",
-        "pygments>=2.13.0",
-        "python-dateutil>=2.8.2",
-        "pytz-deprecation-shim>=0.1.0.post0",
-        "questionary>=1.10.0",
-        "textual>=0.16.0",
-        "tzlocal>=4.2",
+        "apscheduler>=3.10.1",
+        "better-exceptions>=0.3.3",
+        "certifi>=2023.5.7",
+        "charset-normalizer>=3.1.0",
         "click>=8.1.3",
-        "jira==3.4.1",
-        "pydantic>=1.10.2",
-        "pyyaml>=6.0",
-        "requests>=2.28.1",
-        "requests-oauthlib>=1.3.1",
-        "requests-toolbelt>=0.10.0",
-        "tabulate>=0.9.0",
-        "pandas>=1.5.1",
-        "html5lib>=1.1",
-        "random-user-agent>=1.0.1",
-        "progressor>=1.0.14",
-        "urlextract>=1.7.1",
-        "arrow>=1.2.3",
-        "lxml>=4.9.1",
-        "emoji>=2.2.0",
-        "coretime>=0.1.4",
-        "humanize>=4.4.0",
-        "corelog>=0.0.7",
-        "fastapi>=0.89.1",
-        "uvicorn>=0.20.0",
-        "gitpython>=3.1.30",
-        "aiohttp>=3.8.3",
-        "msgpack>=1.0.4",
-        "typing_extensions>=4.4.0",
-        "websocket-client>=1.5.1",
-        "websockets>=11.0.3"
+        "colorama>=0.4.6",
+        "corelog>=0.0.8",
+        "greenlet>=2.0.2",
+        "idna>=3.4",
+        "markdown-it-py>=3.0.0",
+        "mdurl>=0.1.2",
+        "pydantic>=1.10.9",
+        "pygments>=2.15.1",
+        "pytz>=2023.3",
+        "requests>=2.31.0",
+        "rich>=13.4.2",
+        "semver>=3.0.1",
+        "six>=1.16.0",
+        "sqlalchemy>=2.0.17",
+        "structlog>=23.1.0",
+        "typing-extensions>=4.6.3",
+        "tzlocal>=5.0.1",
+        "urllib3>=2.0.3",
     ],
     setup_requires=["wheel"],
-    python_requires=">=3.10",
+    python_requires=">=3.11",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
-    package_data={"wmtf.resources": ["*"]},
     entry_points="""
         [console_scripts]
-        wmtf=wmtf.cli:run
+        walldo=walldo.cli:run
     """,
 )
