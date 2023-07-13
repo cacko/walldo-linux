@@ -59,8 +59,9 @@ def cli_service(ctx: click.Context):
             id=f"{jobs.Job.ROTATE.value}",
             trigger=jobs.JobTrigger.INTERVAL,
             minutes=30,
-            misfire_grace_time=30,
-            replace_existing=True
+            misfire_grace_time=60,
+            replace_existing=True,
+            coalesce=True
         )
         Scheduler.start()
         while True:

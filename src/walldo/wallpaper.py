@@ -1,13 +1,11 @@
 import dbus
 import os
 from pathlib import Path
-HOME = str(Path.home())
-SCREEN_LOCK_CONFIG = HOME+"/.config/kscreenlockerrc"
+SCREEN_LOCK_CONFIG = Path.home() / ".config/kscreenlockerrc"
 
 def setwallpaper(filepath, plugin='org.kde.image'):
     jscript = """
     var allDesktops = desktops();
-    print (allDesktops);
     for (i=0;i<allDesktops.length;i++) {
         d = allDesktops[i];
         d.wallpaperPlugin = "%s";
